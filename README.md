@@ -47,14 +47,15 @@ __Command to launch the project__:
 ```
 where `second_assignment` is the name of the ros package I created for this assignment.
 
-StageRos_Node ########image########
+StageRos_Node <img src="https://cdn-icons.flaticon.com/png/512/3322/premium/3322182.png?token=exp=1638432461~hmac=0487d9c26d143d2b20b70876f6c16a94" width="45"> 
 -------------
 The stageros node wraps the Stage 2-D multi-robot simulator, via libstage. Stage simulates a world as defined in the
 `my_world.world` file in the folder world. This file tells Stage everything about the environment, in this project the world is passed to Stage via a `.png` image which represents the Monza Formula 1 circuit.
 
 __Enviroment__
 
-#########image#########
+![tracciato](https://user-images.githubusercontent.com/81308076/144379997-9a8b2a10-28b5-4f06-b7b3-19780515b9dc.png)
+
 
 The robot which will be moved in the circuit is also defined in the `.world` file and elaborated by the stageros node. It's a simple red cube.
 
