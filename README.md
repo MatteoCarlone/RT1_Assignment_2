@@ -77,9 +77,15 @@ This node manages the UI ( __USER INTERFACE__ ) of the project. The user can con
 The UI node receives input from a terminal window.
 The keyboard buttons that can be pressed are:
 
-* [a] to accelerate
-* [d] to decelerate 
-* [r] to reset the position  
+<center>
+
+| Commands | Description|
+|:--------:|:----------:|
+|__[a]__   |__To Accelerate__|
+|__[d]__   |__To Decelerate__|
+|__[r]__   |__To Reset the position__|
+
+</center>
 
 ##########image###########
 
@@ -143,7 +149,16 @@ If the wall is closer to the robot's right, it will turn left and vice versa.
 
 * __Server__
 
-This function 
+The actual server to receive the client request from the UI_Node.
+
+Here is where the user's keyboard input is received. A switch-case statement handles the different client requests.
+The __[a]__ allows to accelerate, the __[d]__ to decelerate and the __[r]__ to call the standard 'reset_position' service from the 'std_srvs' package: this tool made it very easy to reset the robot to its initial position.
+Whenever the user decides to accelerate, a multiplier ( global variable ) will be incremented. The opposite happens for deceleration.
+
+This function also creates the server's "response" to the client's "request"; in particular, the "response" consists of the float containing the degree of acceleration (i.e. the value of the multiplier), which will then get printed on the screen in the UI_Node.
+
+
+
 
 
 
