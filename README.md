@@ -19,14 +19,10 @@ In order to run more than one node at the same time i created a `.launch` file n
 
 __`run.launch`__ : 
 ```xml
-<launch>
-	
-	<node name="carcontroller_node" pkg="second_assignment" type="carcontroller_node" required="true"/>
-	
-	<node name="UI_node" pkg="second_assignment" type="UI_node" output="screen" launch-prefix="xterm -fg white -bg black -e "  required="true"/>
-	
+<launch>	
+	<node name="carcontroller_node" pkg="second_assignment" type="carcontroller_node" output="screen" launch-prefix="xterm -fg white -bg black -e" required="true"/>
+	<node name="UI_node" pkg="second_assignment" type="UI_node" output= "screen" required="true"/>
 	<node name="stageros" pkg="stage_ros" type="stageros" required ="true" args = "$(find second_assignment)/world/my_world.world"/>
-
 </launch>
 ```
 
