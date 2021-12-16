@@ -61,7 +61,7 @@ The robot which will be moved in the circuit is also defined in the `.world` fil
 
 __robot__
 
-#########image#########
+<img width="50" alt="robot" src="https://user-images.githubusercontent.com/81308076/146415473-ed7ac9b9-0408-468e-bfa0-c8b479be654b.png">
 
 A very handy feature of the Stageros Node is its subscription to the topic `cmd_vel` from `geometry_msgs` package which provides a [`Twist`](https://docs.ros.org/en/api/geometry_msgs/html/msg/Twist.html) type message to express the velocity of a robot in free space, broken into its linear and angular parts.
 
@@ -85,8 +85,11 @@ The keyboard buttons that can be pressed are:
 |__[d]__   |__To Decelerate__|
 |__[r]__   |__To Reset the position__|
 
+------
 
-##########image###########
+<p align="center">
+<img width="370" alt="UI" src="https://user-images.githubusercontent.com/81308076/146416693-1247d8bf-1d96-42d8-ab44-186583886153.png">
+</p>
 
 As soon as an input arrives from outside, it is transmitted to the Controller_Node, which in turn responds by sending back the robot's degree of acceleration.
 This client-server communication system has been implemented by creating a custom service called Accelerate.srv . 
@@ -138,14 +141,19 @@ Thanks to the function Wall_detection(), the robot can detect the shortest dista
 	dist_front = Wall_Detection(310,410,Laser_Array); // detecting the shortest distance to wall on its front
 
 ```
+<p align="center">
+<img src="https://github.com/MatteoCarlone/RT1_Assignment_2/blob/main/images/field_of_view.png" width="480" height="263">
+</p>
 
 The Logic implemented to move the robot in the track is similar to the first assignment of this course [__Assignment_1__](https://github.com/MatteoCarlone/RT1_Assignment_1) :
 
 First, the robot checks for the presence of a wall in front of it at a distance of less than 1.5, if there is not it will move straight ahead by publishing a linear velocity on the "cmd_vel" topic which, by default, is equal to 2, otherwise it will detect walls to its left and right.
 If the wall is closer to the robot's right, it will turn left and vice versa.
 
-##########GIF###########
-
+<p align="center">
+<img src="https://github.com/MatteoCarlone/RT1_Assignment_2/blob/main/images/curve.gif" width="267" height="308">
+</p>
+	
 * __Server__
 
 The actual server to receive the client request from the UI_Node.
@@ -156,6 +164,10 @@ Whenever the user decides to accelerate, a multiplier ( global variable ) will b
 
 This function also creates the server's "response" to the client's "request"; in particular, the "response" consists of the float containing the degree of acceleration (i.e. the value of the multiplier), which will then get printed on the screen in the UI_Node.
 
+
+
+
+https://user-images.githubusercontent.com/81308076/146415893-17ae6448-1b5c-4409-b0bd-9e7cda30db49.mp4
 
 
 
