@@ -6,7 +6,7 @@
 
 This project makes use of a set of software libraries [__ROS__](http://wiki.ros.org) (__Robot-Operating-Systems__) to build a robot application that consists in making a robot run autonomously in the Monza F1 circuit.
 
-This assignment aims to get in touch with ROS, the use of packages, nodes and standard ways to make those nodes communicate such as messages and services.
+This assignment aims to increase my knowledge of ROS, learn the use of packages, nodes and standard ways of making these nodes communicate such as messages and services.
 
 In Particular, I created two nodes: 
 * The first one to control the movement of the robot in the environment.
@@ -26,7 +26,7 @@ __`run.launch`__ :
 </launch>
 ```
 
-I wanted to open the UI_node in a new terminal console, so I installed and used xterm which is a standard terminal emulator build for Unix-like environments.
+I wanted to open the Controller_Node in a new terminal console, so I installed and used xterm which is a standard terminal emulator build for Unix-like environments.
 
 __Command to Install xterm__:
 
@@ -34,7 +34,7 @@ __Command to Install xterm__:
 	sudo apt-get install xterm
 ```
 
-The user can easily run all the nodes I created and also the stageros node that opens the enviroment and also provides a list of usable messages and services. 
+The user can easily run all the nodes I created and also the stageros node that opens the enviroment and  provides a list of usable messages and services.
 
 __Command to launch the project__:
 
@@ -104,7 +104,7 @@ Controller_Node <img src="https://media2.giphy.com/media/LMQ5h5QFw7olMCaYpm/giph
 
 The Controller_Node is the core of the logic for the robot's movement in the circuit, but it's also the handler of the inputs coming from the UI_Node. 
 
-In this Node, implemented in controller.cpp in the folder src, there are 3 main functions:
+In this Node, implemented in controller.cpp in the folder src, there are 4 main functions:
 
  * __Wall_detection(range_min, range_max , Laser_Array)__
 
@@ -149,7 +149,7 @@ If the wall is closer to the robot's right, it will turn left and vice versa.
 <img src="https://github.com/MatteoCarlone/RT1_Assignment_2/blob/main/images/curve.gif" width="267" height="308">
 </p>
 
-* __reaccelerate__
+* __Reaccelerate__
 
 While testing this project, I noticed that increasing the speed of the robot also increased the probability of hitting a wall. so I created a function that simulates the curve exit of a real car. A bolean variable allows me to understand whether the robot has just curved or is coming from a straight line. The concept is simply that, only after a curve, the robot gradually increases its speed to the maximum speed set by the user thanks to the UI_Node.
 
@@ -166,7 +166,20 @@ This function also creates the server's "response" to the client's "request"; in
 
 if the user inputs a wrong key the server will send a negative to the UI which will print a message advertising the user.
 
+Project flowchart
+-----------------
+the logic of this assignment is well illustrated by the flowchart in the figure below.
 
+![Blank diagram - Page 1](https://user-images.githubusercontent.com/81308076/146438477-6b9bff04-7611-48ff-9807-ffd2cb72e3a5.png)
+
+Possibile Improvements
+----------------------
+1. Having implemented a function for exiting a curve, it is certainly also possible to manage the behaviour of the robot when entering a curve. However, even with the re-acceleration function, the robot can complete a lap at a maximum speed of 20.
+2. One might think of dividing the robot's field of view more widely and changing the speed of rotation in a curve more precisely with respect to the position of the wall closest to the robot. 
+
+Robot Movement
+--------------
+The video shows a complete lap.
 
 https://user-images.githubusercontent.com/81308076/146415893-17ae6448-1b5c-4409-b0bd-9e7cda30db49.mp4
 
