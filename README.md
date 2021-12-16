@@ -77,7 +77,7 @@ This node manages the UI ( __USER INTERFACE__ ) of the project. The user can con
 The UI node receives input from a terminal window.
 The keyboard buttons that can be pressed are:
 
-<center>
+
 
 | Commands | Description|
 |:--------:|:----------:|
@@ -85,7 +85,6 @@ The keyboard buttons that can be pressed are:
 |__[d]__   |__To Decelerate__|
 |__[r]__   |__To Reset the position__|
 
-</center>
 
 ##########image###########
 
