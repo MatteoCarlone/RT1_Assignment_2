@@ -26,7 +26,7 @@ __`run.launch`__ :
 </launch>
 ```
 
-In order to open the UI_node in a new terminal console I installed and used xterm which is a standard terminal emulator build for Unix-like environments.
+I wanted to open the UI_node in a new terminal console, so I installed and used xterm which is a standard terminal emulator build for Unix-like environments.
 
 __Command to Install xterm__:
 
@@ -74,7 +74,6 @@ The UI node receives input from a terminal window.
 The keyboard buttons that can be pressed are:
 
 
-
 | Commands | Description|
 |:--------:|:----------:|
 |__[a]__   |__To Accelerate__|
@@ -87,7 +86,7 @@ The keyboard buttons that can be pressed are:
 <img width="370" alt="UI" src="https://user-images.githubusercontent.com/81308076/146416693-1247d8bf-1d96-42d8-ab44-186583886153.png">
 </p>
 
-As soon as an input arrives from outside, it is transmitted to the Controller_Node, which in turn responds by sending back the robot's degree of acceleration.
+As soon as an input arrives from outside, it is transmitted to the Controller_Node, which in turn answer by sending back the robot's degree of acceleration.
 This client-server communication system has been implemented by creating a custom service called Accelerate.srv . 
 The structure of the service is:
 ``` xml
@@ -96,7 +95,7 @@ The structure of the service is:
      float32 value
 ```
 Where:
-* char input is the character typed by the user on the keyboard: [a],[d] or [r].
+* char input is the character typed by the user on the keyboard: __[a]__ , __[d]__ or __[r]__.
 
 * float32 value is the degree of acceleration of the robot that is transmitted as a response from the server to the client. 
 
@@ -149,7 +148,11 @@ If the wall is closer to the robot's right, it will turn left and vice versa.
 <p align="center">
 <img src="https://github.com/MatteoCarlone/RT1_Assignment_2/blob/main/images/curve.gif" width="267" height="308">
 </p>
-	
+
+* __reaccelerate__
+
+While testing this project, I noticed that increasing the speed of the robot also increased the probability of hitting a wall. so I created a function that simulates the curve exit of a real car. A bolean variable allows me to understand whether the robot has just curved or is coming from a straight line. The concept is simply that, only after a curve, the robot gradually increases its speed to the maximum speed set by the user thanks to the UI_Node.
+
 * __Server__
 
 The actual server to receive the client request from the UI_Node.
@@ -157,9 +160,11 @@ The actual server to receive the client request from the UI_Node.
 Here is where the user's keyboard input is received. A switch-case statement handles the different client requests.
 The __[a]__ allows to accelerate, the __[d]__ to decelerate and the __[r]__ to call the standard 'reset_position' service from the 'std_srvs' package: this tool made it very easy to reset the robot to its initial position.
 Whenever the user decides to accelerate, a multiplier ( global variable ) will be incremented. The opposite happens for deceleration.
+the reset of the robot also change its velocity to the default value of 2.
 
 This function also creates the server's "response" to the client's "request"; in particular, the "response" consists of the float containing the degree of acceleration (i.e. the value of the multiplier), which will then get printed on the screen in the UI_Node.
 
+if the user inputs a wrong key the server will send a negative to the UI which will print a message advertising the user.
 
 
 
